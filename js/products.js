@@ -1,7 +1,18 @@
+//determinar una constante que almacene una lista JSON mediante un await fetch
+
 const lista_autos = await fetch("https://japceibal.github.io/emercado-api/cats_products/101.json")
     .then(response => response.json());
-//console.log(lista_autos.products[1].name)//
+//console.log(lista_autos.products[1].name)//test
+
+//determino constante que haga referencia a los elementos de la ID correspondiente
 const contenedor = document.getElementById("contenedor");
+
+
+//armo la funcion pagina, la cual uso un for para que recorrar una cierta lista(variable)
+
+//agrego mediante inner.HMTL y luego los ${}(esto lo saqué del categories.js y lo reconstruí) son para llamar a los elementos de esa lista previamente definida
+
+//los div los copie y pegué del categories.js que era muy parecido 
 
 function pagina(lista_de_autos) {
 
