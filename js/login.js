@@ -6,4 +6,7 @@ function validar() {
     if (email == "" || password == "") {
         alert("ingrese algun valor")
     }
+    else {
+        alert("Bienvenido")
+    }
 }
