@@ -1,12 +1,29 @@
+let email = document.getElementById("floatingInput").value;
+let password = document.getElementById("floatingPassword").value;
+//capturar valores de los campos//
+
 function validar() {
-    //capturar valores de los campos//
-    let email = document.getElementById("floatingInput").value;
-    let password = document.getElementById("floatingPassword").value;
-    //validacion
+
+
+
+    console.log(email);
+    console.log(password);
+
+    //validacion Novacio
+
     if (email == "" || password == "") {
         alert("ingrese algun valor")
     }
     else {
-        alert("Bienvenido")
+        alert("Bienvenido K-po")
     }
+    GuardarEmail();
+}
+
+
+
+function GuardarEmail() {
+    let user = document.getElementById("floatingInput").value;
+    localStorage.setItem("usuario", user);
+    console.log(user)
 }

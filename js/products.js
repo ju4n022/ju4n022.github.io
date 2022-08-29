@@ -1,18 +1,32 @@
-//determinar una constante que almacene una lista JSON mediante un await fetch
-
 const lista_autos = await fetch("https://japceibal.github.io/emercado-api/cats_products/101.json")
-    .then(response => response.json());
-//console.log(lista_autos.products[1].name)//test
+.then(response => response.json());
+const lista_juguetes = await fetch("https://japceibal.github.io/emercado-api/cats_products/102.json")
+.then(response => response.json());
+const lista_muebles = await fetch("https://japceibal.github.io/emercado-api/cats_products/103.json")
+.then(response => response.json());
+const lista_herramientas = await fetch("https://japceibal.github.io/emercado-api/cats_products/104.json")
+.then(response => response.json());
+const lista_computadoras = await fetch("https://japceibal.github.io/emercado-api/cats_products/105.json")
+.then(response => response.json());
+const lista_vestimenta = await fetch("https://japceibal.github.io/emercado-api/cats_products/106.json")
+.then(response => response.json());
+const lista_electrodomesticos = await fetch("https://japceibal.github.io/emercado-api/cats_products/107.json")
+.then(response => response.json());
+const lista_deporte = await fetch("https://japceibal.github.io/emercado-api/cats_products/108.json")
+.then(response => response.json());
+const lista_celulares = await fetch("https://japceibal.github.io/emercado-api/cats_products/109.json")
+.then(response => response.json());
 
-//determino constante que haga referencia a los elementos de la ID correspondiente
+
+//mayoria vacios//
+
+
+
+
+
+    
+//console.log(lista_autos.products[1].name)//
 const contenedor = document.getElementById("contenedor");
-
-
-//armo la funcion pagina, la cual uso un for para que recorrar una cierta lista(variable)
-
-//agrego mediante inner.HMTL y luego los ${}(esto lo saqué del categories.js y lo reconstruí) son para llamar a los elementos de esa lista previamente definida
-
-//los div los copie y pegué del categories.js que era muy parecido 
 
 function pagina(lista_de_autos) {
 
@@ -33,9 +47,41 @@ function pagina(lista_de_autos) {
 
     }
 }
-pagina(lista_autos)
 
+let productos;
+let categorias = localStorage.getItem("catID");
 
+if(categorias == 101){ 
+    productos = lista_autos;
+
+}
+else if (categorias == 102){
+    productos = lista_juguetes;
+}
+
+else if (categorias == 103){
+    productos = lista_muebles;
+}
+else if (categorias == 104){
+    productos = lista_herramientas;
+}
+else if (categorias == 105){
+    productos = lista_computadoras;
+}
+else if (categorias == 106){
+    productos = lista_vestimenta;
+}
+else if (categorias == 107){
+    productos = lista_electrodomesticos;
+}
+else if (categorias == 108){
+    productos = lista_deporte;
+}
+else if (categorias == 109){
+    productos = lista_celulares;
+}
+
+pagina(productos)
 
 
 
