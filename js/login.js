@@ -27,3 +27,5 @@ function GuardarEmail() {
     localStorage.setItem("usuario", user);
     console.log(user)
 }
+
+//armo funcion que obtiene elemento por ID del email que se escribe, luego lo guarda en el localstorage con la ID "usuario" , esa variable letie//
