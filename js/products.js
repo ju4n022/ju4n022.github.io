@@ -51,6 +51,8 @@ function pagina(lista_de_autos) {
 let productos;
 let categorias = localStorage.getItem("catID");
 
+//armo la variable categorias que va obteniendo segun cat ID, luego la variable productos va a ir cambiano segun este valor de categorias//
+
 if(categorias == 101){ 
     productos = lista_autos;
 
