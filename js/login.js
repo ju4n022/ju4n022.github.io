@@ -15,7 +15,7 @@ function validar() {
         alert("ingrese algun valor")
     }
     else {
-        alert("Bienvenido K-po")
+        alert("Bienvenido/a")
     }
     GuardarEmail();
 }
