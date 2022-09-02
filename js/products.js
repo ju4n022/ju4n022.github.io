@@ -15,71 +15,74 @@ const url_lista_celulares = "https://japceibal.github.io/emercado-api/cats_produ
 
 let minPrice = undefined;
 let maxPrice = undefined;
-const ORDER_BY_PRICE = "Price.";
+const ORDER_BY_PRICE_ASC = "ASC";
+const ORDER_BY_PRICE_DESC = "DESC";
 let currentProductsArray = [];
 
 
-document.addEventListener("DOMContentLoaded", function(e){
-    let categorias = localStorage.getItem("catID");
-    let url="";
+document.addEventListener("DOMContentLoaded", function (e) {
+  let categorias = localStorage.getItem("catID");
+  let url = "";
 
-    if(categorias == 101){ 
-      url=url_lista_autos;
+  if (categorias == 101) {
+    url = url_lista_autos;
+  }
+  if (categorias == 102) {
+    url = url_lista_juguetes;
+  }
+  if (categorias == 103) {
+    url = url_lista_muebless;
+  }
+  if (categorias == 104) {
+    url = url_lista_herramientas;
+  }
+  if (categorias == 105) {
+    url = url_lista_computadoras;
+  }
+  if (categorias == 106) {
+    url = url_lista_vestimenta;
+  }
+  if (categorias == 107) {
+    url = url_lista_electrodomesticos;
+  }
+  if (categorias == 108) {
+    url = url_lista_deporte;
+  }
+  if (categorias == 109) {
+    url = url_lista_celulares;
+  }
+
+
+  getJSONData(url).then(function (resultObj) {
+    if (resultObj.status === 'ok') {
+      currentProductsArray = resultObj.data
+      FilterAndSortPage();
     }
-    if(categorias == 102){ 
-        url=url_lista_juguetes;
-      }
-      if(categorias == 103){ 
-        url=url_lista_muebless;
-      }
-      if(categorias == 104){ 
-        url=url_lista_herramientas;
-      }
-      if(categorias == 105){ 
-        url=url_lista_computadoras;
-      }
-      if(categorias == 106){ 
-        url=url_lista_vestimenta;
-      }
-      if(categorias == 107){ 
-        url=url_lista_electrodomesticos;
-      }
-      if(categorias == 108){ 
-        url=url_lista_deporte;
-      }
-      if(categorias == 109){ 
-        url=url_lista_celulares;
-      }
+  });
+});
 
-
-    getJSONData(url).then(function(resultObj){
-        if (resultObj.status === 'ok')
-        {
-            currentProductsArray = resultObj.data
-            FilterAndSortPage();
-        }
-    });
- });
-   
- function Filter(){
+function Filter() {
   //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
   //de productos por categoría.
+
   minPrice = document.getElementById("rangeFilterPriceMin").value;
   maxPrice = document.getElementById("rangeFilterPriceMax").value;
-//filtro de precio
 
-  if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
-      minPrice = parseInt(minPrice);
+  //filtro de precio
+
+
+  if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0) {
+    minPrice = parseInt(minPrice);
   }
-  else{
-      minPrice = undefined;
+  else {
+    minPrice = undefined;
   }
 
-  if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
-      maxPrice = parseInt(maxPrice);
+  if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
+    maxPrice = parseInt(maxPrice);
   }
-  else{
-      maxPrice = undefined;
+  else {
+    maxPrice = undefined;
   }
 
   FilterAndSortPage();
@@ -88,16 +91,16 @@ document.addEventListener("DOMContentLoaded", function(e){
 const contenedor = document.getElementById("contenedor");
 
 function FilterAndSortPage() {
-  contenedor.innerHTML ="";
-    var min = minPrice;
-    var max = maxPrice;
+  contenedor.innerHTML = "";
+  var min = minPrice;
+  var max = maxPrice;
 
-    for (let i = 0; i < currentProductsArray.products.length; i++) {
-       var product = currentProductsArray.products[i];
-       if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
-          ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))){
+  for (let i = 0; i < currentProductsArray.products.length; i++) {
+    var product = currentProductsArray.products[i];
+    if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
+      ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))) {
 
-        contenedor.innerHTML += `<div class="row">
+      contenedor.innerHTML += `<div class="row">
         <div class="col-3">
             <img src= ${product.image} alt='NO SE CARGA LA IMAGEN' class='img-thumbnail'>
         </div>
@@ -109,13 +112,13 @@ function FilterAndSortPage() {
             <p class="mb-1">${product.description}</p>
         </div>
     </div> `
-       }
-    
-
     }
+
+
+  }
 }
 
-//Le indico que cuando haga click en el input de esa id, ocurras esas funciones, que despues defino
+
 
 document.getElementById("sortPriceAsc").addEventListener("click", function () {
   sortAndShowProducts(ORDER_BY_PRICE_ASC);
@@ -164,26 +167,6 @@ function sortPruducts(criteria, array) {
       return 0;
   });
   }
-  array.products = result; // le indicto que como resultado debe dar un array de los productos y luego hago que retorne dicho array
+  array.products = result;
   return array;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
