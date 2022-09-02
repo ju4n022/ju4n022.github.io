@@ -8,7 +8,9 @@ const url_lista_electrodomesticos = "https://japceibal.github.io/emercado-api/ca
 const url_lista_deporte = "https://japceibal.github.io/emercado-api/cats_products/108.json"
 const url_lista_celulares = "https://japceibal.github.io/emercado-api/cats_products/109.json"
 
-//defino las listas mediante const = url que luego invocaré, la maryoria están vacios//
+
+
+//defino las listas mediante const que luego invocaré, la maryoria están vacios//
 
 
 let minPrice = undefined;
@@ -16,72 +18,65 @@ let maxPrice = undefined;
 const ORDER_BY_PRICE = "Price.";
 let currentProductsArray = [];
 
-//defino constantes y variables que necesitaré para los filtros
 
-
-document.addEventListener("DOMContentLoaded", function (e) {
+document.addEventListener("DOMContentLoaded", function(e){
     let categorias = localStorage.getItem("catID");
-    let url = "";
+    let url="";
 
-    //carga los datos "DOM" del url que le indico, segun su catID
-
-    if (categorias == 101) {
-        url = url_lista_autos;
+    if(categorias == 101){ 
+      url=url_lista_autos;
     }
-    if (categorias == 102) {
-        url = url_lista_juguetes;
-    }
-    if (categorias == 103) {
-        url = url_lista_muebless;
-    }
-    if (categorias == 104) {
-        url = url_lista_herramientas;
-    }
-    if (categorias == 105) {
-        url = url_lista_computadoras;
-    }
-    if (categorias == 106) {
-        url = url_lista_vestimenta;
-    }
-    if (categorias == 107) {
-        url = url_lista_electrodomesticos;
-    }
-    if (categorias == 108) {
-        url = url_lista_deporte;
-    }
-    if (categorias == 109) {
-        url = url_lista_celulares;
-    }
+    if(categorias == 102){ 
+        url=url_lista_juguetes;
+      }
+      if(categorias == 103){ 
+        url=url_lista_muebless;
+      }
+      if(categorias == 104){ 
+        url=url_lista_herramientas;
+      }
+      if(categorias == 105){ 
+        url=url_lista_computadoras;
+      }
+      if(categorias == 106){ 
+        url=url_lista_vestimenta;
+      }
+      if(categorias == 107){ 
+        url=url_lista_electrodomesticos;
+      }
+      if(categorias == 108){ 
+        url=url_lista_deporte;
+      }
+      if(categorias == 109){ 
+        url=url_lista_celulares;
+      }
 
 
-    getJSONData(url).then(function (resultObj) {
-        if (resultObj.status === 'ok') {
+    getJSONData(url).then(function(resultObj){
+        if (resultObj.status === 'ok')
+        {
             currentProductsArray = resultObj.data
             FilterAndSortPage();
         }
     });
-});
-
-
-
-
-
+ });
+   
 
 
 const contenedor = document.getElementById("contenedor");
 
 function FilterAndSortPage() {
-
+    
     var min = minPrice;
     var max = maxPrice;
 
     for (let i = 0; i < currentProductsArray.products.length; i++) {
-        var product = currentProductsArray.products[i];
+       var product = currentProductsArray.products[i];
+       
+       if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
+          ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))){
 
-        if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
-            ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))) {
-
-            contenedor.innerHTML += `<div class="row">
+        contenedor.innerHTML += `<div class="row">
         <div class="col-3">
             <img src= ${product.image} alt='NO SE CARGA LA IMAGEN' class='img-thumbnail'>
         </div>
@@ -93,41 +88,43 @@ function FilterAndSortPage() {
             <p class="mb-1">${product.description}</p>
         </div>
     </div> `
-        }
-
+       }
+    
 
     }
 }
 
-document.getElementById("sortByPrice").addEventListener("click", function () {
-    sortAndShowCategories(ORDER_BY_PRICE);
-});
 
-document.getElementById("rangeFilterPrice").addEventListener("click", function () {
+
+
+
+
+document.getElementById("sortByPrice").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_BY_PRICE); }); 
+
+document.getElementById("rangeFilterPrice").addEventListener("click", function(){
     //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
     //de productos por categoría.
     minPrice = document.getElementById("rangeFilterPriceMin").value;
     maxPrice = document.getElementById("rangeFilterPriceMax").value;
-    //filtro de precio
+//filtro de precio
 
-    if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0) {
+    if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
         minPrice = parseInt(minPrice);
     }
-    else {
+    else{
         minPrice = undefined;
     }
 
-    if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
+    if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
         maxPrice = parseInt(maxPrice);
     }
-    else {
+    else{
         maxPrice = undefined;
     }
 
     FilterAndSortPage();
 });
-
-
 
 
 
