@@ -17,6 +17,7 @@ let minPrice = undefined;
 let maxPrice = undefined;
 const ORDER_BY_PRICE_ASC = "ASC";
 const ORDER_BY_PRICE_DESC = "DESC";
+const ORDER_BY_REL_ASC = "REL"
 let currentProductsArray = [];
 
 
@@ -126,10 +127,13 @@ document.getElementById("sortPriceAsc").addEventListener("click", function () {
 document.getElementById("sortPriceDesc").addEventListener("click", function () {
   sortAndShowProducts(ORDER_BY_PRICE_DESC);
 });
+document.getElementById("sortByRel").addEventListener("click", function () {
+  sortAndShowProducts(ORDER_BY_REL_ASC);
+});
 
 
 
-function sortAndShowProducts(sortCriteria, productsArray){
+function sortAndShowProducts(sortCriteria, productsArray) {
   currentSortCriteria = sortCriteria;
 
   currentProductsArray = sortPruducts(currentSortCriteria, currentProductsArray);
@@ -145,27 +149,38 @@ function sortPruducts(criteria, array) {
   let result = [];
 
   if (criteria === ORDER_BY_PRICE_DESC) {
-    result = array.products.sort(function(a, b) {
+    result = array.products.sort(function (a, b) {
       let aCost = parseInt(a.cost);
       let bCost = parseInt(b.cost);
 
-      
-      if ( aCost > bCost ){ return 1; }
-      if ( aCost < bCost ){ return -1; }
+
+      if (aCost > bCost) { return 1; }
+      if (aCost < bCost) { return -1; }
       return 0;
-  });
+    });
   }
 
   if (criteria === ORDER_BY_PRICE_ASC) {
-    result = array.products.sort(function(a, b) {
+    result = array.products.sort(function (a, b) {
       let aCost = parseInt(a.cost);
       let bCost = parseInt(b.cost);
 
-      
-      if ( aCost > bCost ){ return -1; }
-      if ( aCost < bCost ){ return 1; }
+
+      if (aCost > bCost) { return -1; }
+      if (aCost < bCost) { return 1; }
       return 0;
-  });
+    });
+  }
+  if (criteria === ORDER_BY_REL_ASC) {
+    result = array.products.sort(function (a, b) {
+      let aRel = parseInt(a.soldCount);
+      let bRel = parseInt(b.soldCount);
+
+
+      if (aRel > bRel) { return 1; }
+      if (aRel < bRel) { return -1; }
+      return 0;
+    });
   }
   array.products = result;
   return array;
