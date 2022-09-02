@@ -171,6 +171,8 @@ function sortPruducts(criteria, array) {
       return 0;
     });
   }
+
+  //no funca orden de relevancia//
   if (criteria === ORDER_BY_REL_ASC) {
     result = array.products.sort(function (a, b) {
       let aRel = parseInt(a.soldCount);
