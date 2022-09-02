@@ -36,7 +36,7 @@
       </div>
     </div>
   </nav>
-  <main class="pb-5 container" id="contenedor">
+
 
     <div class="text-center p-4">
       <h2>Productos</h2>
@@ -67,18 +67,19 @@
             <div class="col">
               <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
             </div>
-          </div>
-          <div class="col-3 p-0">
-            <div class="btn-group" role="group">
-              <button class="btn btn-light btn-block" id="rangeFilterPrice">Filtrar</button>
-              <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" onclick="Filter()">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-  </main>
+      <main class="pb-5 container" id="contenedor">
+        
+      </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -101,6 +102,7 @@
 </body>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/init.js"></script>
-<script type="module" src="js/products.js"></script>
+<script src="js/products.js"></script>
+<script src="js/login.js"></script>
 
 </html>
