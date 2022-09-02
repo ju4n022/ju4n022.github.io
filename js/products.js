@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
  });
-
+   
  function Filter(){
   //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
   //de productos por categoría.
@@ -84,19 +84,16 @@ document.addEventListener("DOMContentLoaded", function(e){
 
   FilterAndSortPage();
 }
-   
-
 
 const contenedor = document.getElementById("contenedor");
 
 function FilterAndSortPage() {
-    
+  contenedor.innerHTML ="";
     var min = minPrice;
     var max = maxPrice;
 
     for (let i = 0; i < currentProductsArray.products.length; i++) {
        var product = currentProductsArray.products[i];
-       
        if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
           ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))){
 
@@ -118,9 +115,6 @@ function FilterAndSortPage() {
     }
 }
 
+
 document.getElementById("sortByPrice").addEventListener("click", function(){
         sortAndShowCategories(ORDER_BY_PRICE); }); 
-
-
-
-
