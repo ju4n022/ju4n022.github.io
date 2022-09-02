@@ -115,6 +115,75 @@ function FilterAndSortPage() {
     }
 }
 
+//Le indico que cuando haga click en el input de esa id, ocurras esas funciones, que despues defino
 
-document.getElementById("sortByPrice").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_BY_PRICE); }); 
+document.getElementById("sortPriceAsc").addEventListener("click", function () {
+  sortAndShowProducts(ORDER_BY_PRICE_ASC);
+});
+document.getElementById("sortPriceDesc").addEventListener("click", function () {
+  sortAndShowProducts(ORDER_BY_PRICE_DESC);
+});
+
+
+
+function sortAndShowProducts(sortCriteria, productsArray){
+  currentSortCriteria = sortCriteria;
+
+  currentProductsArray = sortPruducts(currentSortCriteria, currentProductsArray);
+
+  //Muestro las categorías ordenadas
+  FilterAndSortPage();
+}
+
+
+//Filtro ascendente y descendente copie y modifique el que aparecia por vendidos en el categories
+
+function sortPruducts(criteria, array) {
+  let result = [];
+
+  if (criteria === ORDER_BY_PRICE_DESC) {
+    result = array.products.sort(function(a, b) {
+      let aCost = parseInt(a.cost);
+      let bCost = parseInt(b.cost);
+
+      
+      if ( aCost > bCost ){ return 1; }
+      if ( aCost < bCost ){ return -1; }
+      return 0;
+  });
+  }
+
+  if (criteria === ORDER_BY_PRICE_ASC) {
+    result = array.products.sort(function(a, b) {
+      let aCost = parseInt(a.cost);
+      let bCost = parseInt(b.cost);
+
+      
+      if ( aCost > bCost ){ return -1; }
+      if ( aCost < bCost ){ return 1; }
+      return 0;
+  });
+  }
+  array.products = result; // le indicto que como resultado debe dar un array de los productos y luego hago que retorne dicho array
+  return array;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
