@@ -138,7 +138,11 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 
   currentProductsArray = sortPruducts(currentSortCriteria, currentProductsArray);
 
-  //Muestro las categorías ordenadas
+  //funcion que recibe un criterio de ordenamiento y segun el array de productos que esta cargado, ordena dicho array con la funcin sortProduct.
+  //Dicha funcion recibe un criterio y un array y segun esos criterios, ordena; retornando el array ordenado
+  //Luego llamamos la funcion que dibuja la tabla nuevamente, cargando el array ordenado.
+
+  
   FilterAndSortPage();
 }
 
@@ -173,6 +177,7 @@ function sortPruducts(criteria, array) {
   }
 
   //no funca orden de relevancia//
+  
   if (criteria === ORDER_BY_REL_ASC) {
     result = array.products.sort(function (a, b) {
       let aRel = parseInt(a.soldCount);
