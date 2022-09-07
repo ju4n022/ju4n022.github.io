@@ -1,68 +1,48 @@
-const url_lista_autos = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-const url_lista_juguetes = "https://japceibal.github.io/emercado-api/cats_products/102.json"
-const url_lista_muebles = "https://japceibal.github.io/emercado-api/cats_products/103.json"
-const url_lista_herramientas = "https://japceibal.github.io/emercado-api/cats_products/104.json"
-const url_lista_computadoras = "https://japceibal.github.io/emercado-api/cats_products/105.json"
-const url_lista_vestimenta = "https://japceibal.github.io/emercado-api/cats_products/106.json"
-const url_lista_electrodomesticos = "https://japceibal.github.io/emercado-api/cats_products/107.json"
-const url_lista_deporte = "https://japceibal.github.io/emercado-api/cats_products/108.json"
-const url_lista_celulares = "https://japceibal.github.io/emercado-api/cats_products/109.json"
+var url_lista = "https://japceibal.github.io/emercado-api/cats_products/";
+
+//Para entrega 3 necesito:
+
+function setCatIDinfo(id) {       //aqui es como guardo la ID de cada producto, para luego pegar su informacion redireccionando a "product-info.html"
+  localStorage.setItem("catIDinfo", id);
+  window.location = "product-info.html";
+
+}
 
 
 
-//defino las listas mediante const que luego invocaré, la maryoria están vacios//
+//defino las listas mediante un var, que luego solo cambiará la ultima parte
 
 
 let minPrice = undefined;
 let maxPrice = undefined;
 const ORDER_BY_PRICE_ASC = "ASC";
 const ORDER_BY_PRICE_DESC = "DESC";
-const ORDER_BY_REL_ASC = "REL"
+const ORDER_BY_REL_ASC = "REL";
+
 let currentProductsArray = [];
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  let categorias = localStorage.getItem("catID");
-  let url = "";
+  let categorias = localStorage.getItem("catID"); // seteo categorias que es el ID que obtiene el localstorage  
+  let url = url_lista + categorias + ".json" // obtengo las listas concatenando la primera parte de la URL + el id que corresponda + .json
 
-  if (categorias == 101) {
-    url = url_lista_autos;
-  }
-  if (categorias == 102) {
-    url = url_lista_juguetes;
-  }
-  if (categorias == 103) {
-    url = url_lista_muebless;
-  }
-  if (categorias == 104) {
-    url = url_lista_herramientas;
-  }
-  if (categorias == 105) {
-    url = url_lista_computadoras;
-  }
-  if (categorias == 106) {
-    url = url_lista_vestimenta;
-  }
-  if (categorias == 107) {
-    url = url_lista_electrodomesticos;
-  }
-  if (categorias == 108) {
-    url = url_lista_deporte;
-  }
-  if (categorias == 109) {
-    url = url_lista_celulares;
-  }
+ 
 
 
   getJSONData(url).then(function (resultObj) {
+    
     if (resultObj.status === 'ok') {
+      
       currentProductsArray = resultObj.data
       FilterAndSortPage();
+      
+
     }
   });
 });
 
 function Filter() {
+
   //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
   //de productos por categoría.
 
@@ -101,9 +81,9 @@ function FilterAndSortPage() {
     if (((min == undefined) || (min != undefined && parseInt(product.cost) >= min)) &&
       ((max == undefined) || (max != undefined && parseInt(product.cost) <= max))) {
 
-      contenedor.innerHTML += `<div class="row">
+      contenedor.innerHTML += `<div onclick="setCatIDinfo(${product.id})" class="row">
         <div class="col-3">
-            <img src= ${product.image} alt='NO SE CARGA LA IMAGEN' class='img-thumbnail'>
+            <img  src= ${product.image} alt='NO SE CARGA LA IMAGEN' class='img-thumbnail'>
         </div>
         <div class="col">
             <div class="d-flex w-100 justify-content-between">
@@ -115,9 +95,13 @@ function FilterAndSortPage() {
     </div> `
     }
 
+    
+
 
   }
 }
+
+
 
 
 
@@ -133,16 +117,13 @@ document.getElementById("sortByRel").addEventListener("click", function () {
 
 
 
-function sortAndShowProducts(sortCriteria, productsArray) {
+
+function sortAndShowProducts(sortCriteria, productsArray){
   currentSortCriteria = sortCriteria;
 
   currentProductsArray = sortPruducts(currentSortCriteria, currentProductsArray);
 
-  //funcion que recibe un criterio de ordenamiento y segun el array de productos que esta cargado, ordena dicho array con la funcin sortProduct.
-  //Dicha funcion recibe un criterio y un array y segun esos criterios, ordena; retornando el array ordenado
-  //Luego llamamos la funcion que dibuja la tabla nuevamente, cargando el array ordenado.
-
-  
+  //Muestro las categorías ordenadas
   FilterAndSortPage();
 }
 
@@ -153,39 +134,37 @@ function sortPruducts(criteria, array) {
   let result = [];
 
   if (criteria === ORDER_BY_PRICE_DESC) {
-    result = array.products.sort(function (a, b) {
+    result = array.products.sort(function(a, b) {
       let aCost = parseInt(a.cost);
       let bCost = parseInt(b.cost);
 
-
-      if (aCost > bCost) { return 1; }
-      if (aCost < bCost) { return -1; }
+      
+      if ( aCost > bCost ){ return 1; }
+      if ( aCost < bCost ){ return -1; }
       return 0;
-    });
+  });
   }
 
-  if (criteria === ORDER_BY_PRICE_ASC) {
-    result = array.products.sort(function (a, b) {
+  else if (criteria === ORDER_BY_PRICE_ASC) {
+    result = array.products.sort(function(a, b) {
       let aCost = parseInt(a.cost);
       let bCost = parseInt(b.cost);
 
-
-      if (aCost > bCost) { return -1; }
-      if (aCost < bCost) { return 1; }
+      
+      if ( aCost > bCost ){ return -1; }
+      if ( aCost < bCost ){ return 1; }
       return 0;
-    });
+  });
   }
 
-  //no funca orden de relevancia//
-  
-  if (criteria === ORDER_BY_REL_ASC) {
+  else if (criteria === ORDER_BY_REL_ASC) {
     result = array.products.sort(function (a, b) {
       let aRel = parseInt(a.soldCount);
       let bRel = parseInt(b.soldCount);
 
 
-      if (aRel > bRel) { return 1; }
-      if (aRel < bRel) { return -1; }
+      if (aRel > bRel) { return -1; }
+      if (aRel < bRel) { return 1; }
       return 0;
     });
   }
