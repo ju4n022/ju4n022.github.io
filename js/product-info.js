@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 
-//dudas varias
+
 function LoadComments(){
   let productinfo = localStorage.getItem("catIDinfo"); //obtengo por id mediante storage
 
@@ -66,13 +66,15 @@ function MostrarInfo() {
         
         <b>"Descripcion"</b>${currentProductInfo.description}</div>
 
+        
 
-` //cambiar forma de mostrar
+
+` //FALTAN IMAGENES
 }
 
-//No se si anda
 
-function MostrarComments() {
+
+function MostrarComments() {  //funcion que recorre los comentarios con foreach
 
   commentsinfo.innerHTML = "";
 
@@ -86,7 +88,7 @@ function MostrarComments() {
             
         <p class="mb-1">${comentario.description}</p>
     </div>
-  </div> ` //cambiar forma de mostrar
+  </div> ` //cambiar forma de mostrar y diseño
   
 
   });
