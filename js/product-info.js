@@ -91,13 +91,3 @@ function MostrarComments() {
 
   });
 }
-
-
-
-
-
-
-/* <div class="col-3"> //imagenes ??
-    
-        <img  src= ${currentProductInfo.images} alt='NO SE CARGA LA IMAGEN' class='img-thumbnail'>
-    </div> */
