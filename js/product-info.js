@@ -12,7 +12,7 @@ let currentCommentsInfo = []; //lista de los comentarios de los productos (vacia
 document.addEventListener("DOMContentLoaded", function (e) { //funcion que escucha eventos, cuando hago click en cierto div, obtiene mediante localstorage la ID del producto
 
   let productinfo = localStorage.getItem("catIDinfo"); //obtengo por id mediante storage
-  let url = product + productinfo + ".json"; // concatené para evitar los if
+  let url = product + productinfo + ".json"; // concatené para evitar los if (forma dinámica de obtener URL)
 
   getJSONData(url).then(function (resultObj) {
 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function (e) { //funcion que escuc
 function LoadComments() {
   let productinfo = localStorage.getItem("catIDinfo"); //obtengo por id mediante storage
 
-  let url_comments = comments + productinfo + ".json";
+  let url_comments = comments + productinfo + ".json"; //concateno para obtener en forma dinámica la URL
 
   getJSONData(url_comments).then(function (resultObj) {
 
