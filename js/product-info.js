@@ -78,7 +78,7 @@ function MostrarComments() { //armo funcion para mostrar comentarios de cada pro
     let score = ''; //defino variable que luego invocaré para agregar a un span que tendrá estrellas checked y no checked
 
     for (let i = 1; i <= 5; i++) {
-      if (i <= comentario.score) { // la condicion: pinto estrella de color orange por cada "score" que tenga, el resto de estrellas (hasta 5) las deja sin pintar
+      if (i <= comentario.score) { // Hago 5 interaciones, y pinto una estrellita por cada "score" que esté checked
         score += '<span class="fa fa-star checked"></span>';
 
       }
