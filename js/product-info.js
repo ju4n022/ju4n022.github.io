@@ -5,6 +5,7 @@ const commentsinfo = document.getElementById("comments"); //seteo constante que 
 var comments = "https://japceibal.github.io/emercado-api/products_comments/";
 
 const imagenes = document.getElementById("imagenes"); //seteo constante que corresponde al div de ese ID que dibujaré las imagenes
+const relaProd = document.getElementById("relaProd");
 
 let currentProductInfo = []; //lista de la informacion de los productos (vacia)
 let currentCommentsInfo = []; //lista de los comentarios de los productos (vacia)
@@ -38,7 +39,8 @@ function LoadComments() {
     if (resultObj.status === 'ok') {
 
       currentCommentsInfo = resultObj.data //currentCommentsInfo es la data del result.Obj
-      MostrarComments(); //llamo a la funcion mostrar info para que añada esta informacion obtenida a la página mediante innerHTML
+      MostrarComments();
+      mostrarRelacionados() //llamo a la funcion mostrar info para que añada esta informacion obtenida a la página mediante innerHTML
     }
   });
 
@@ -102,3 +104,24 @@ function MostrarComments() { //armo funcion para mostrar comentarios de cada pro
   </div> `
   });
 }
+
+function mostrarRelacionados() {
+
+
+  currentProductInfo.relatedProducts.forEach(rela => { //recorro las imagenes de los relatedproductos con foreach y las llamo "rela", dicho rela será un nuevo item con info
+
+    relaProd.innerHTML +=`
+          <div> 
+            
+            <div class="gallery">
+            
+              <img src="${rela.image}" >
+            </div>
+
+         
+          </div>`
+
+
+  })
+
+};
