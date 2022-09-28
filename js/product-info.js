@@ -105,6 +105,11 @@ function MostrarComments() { //armo funcion para mostrar comentarios de cada pro
   });
 }
 
+function setProductinfo(id) {       //aqui es como guardo la ID de cada producto, para luego pegar su informacion redireccionando a "product-info.html"
+  localStorage.setItem("catIDinfo", id);
+  window.location = "product-info.html";
+
+}
 function mostrarRelacionados() {
 
 
@@ -112,13 +117,9 @@ function mostrarRelacionados() {
 
     relaProd.innerHTML +=`
           <div> 
-            
             <div class="gallery">
-            
-              <img src="${rela.image}" >
+              <a onclick="setProductinfo(${rela.id})"> <img id="img" src="${rela.image}"> </a> 
             </div>
-
-         
           </div>`
 
 
