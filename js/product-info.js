@@ -119,6 +119,7 @@ function mostrarRelacionados() {
           <div> 
             <div class="gallery">
               <a onclick="setProductinfo(${rela.id})"> <img id="img" src="${rela.image}"> </a> 
+              <div><h8>${rela.name}</h8></div>
             </div>
           </div>`
 
