@@ -5,14 +5,10 @@ let password = document.getElementById("floatingPassword").value;
 function validar() {
 
 
-
-    console.log(email);
-    console.log(password);
-
     //validacion Novacio
 
     if (email == "" || password == "") {
-        alert("ingrese algun valor")
+        alert("Bienvenido/a")
     }
     else {
         alert("Bienvenido/a")
