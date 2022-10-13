@@ -31,35 +31,34 @@ function mostrarCarrito() {
         var costoTotal = articulo.unitCost * articulo.count;
 
         carritoInfo.innerHTML += `
-        <div class="card" style="width: 18rem;">
-  <img src="${articulo.image}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">${articulo.name}</h5>
-    <h5 class="card-title">${articulo.currency}</h5>
-    <h5 class="card-title">${costoTotal}</h5>
-
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-
-<table>
-  <tr>
-    <th>Nombre</th>
-    <th>Imagen</th>
-    <th>Precio</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</table>
+        <style>
+        table, th, td{
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        th, td{
+          padding: 10px;
+        }
+        </style>
+        
+        <table class="col-12" style="width:100%;">
+          <tr>
+            <th>     </th>
+            <th>Nombre</th>
+            <th> Costo </th>
+            <th> Cantidad </th>
+            <th>Subtotal</th>
+          </tr>
+          <tr>
+            <td><img src="${articulo.image}" class="card-img-top" alt="..." style="width: 18rem; overflow-x: auto; display: block;"></td>
+            <td><h5 class="card-title">${articulo.name}</h5></td>
+            <td><h5 class="card-title"> ${articulo.currency}  ${articulo.unitCost}</h5></td>
+            <td><h5 class="card-title">${articulo.count}</h5></td>
+            <td><h5 class="card-title"> ${articulo.currency} ${costoTotal}</h5></td>
+          </tr>
+          
+        </table>
         
         `
 
