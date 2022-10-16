@@ -3,10 +3,10 @@ const carritoInfo = document.getElementById("carrito");
 
 
 
-document.addEventListener("DOMContentLoaded", function (e) { //funcion que escucha eventos, cuando hago click en cierto div, obtiene mediante localstorage la ID del producto
+document.addEventListener("DOMContentLoaded", function (e) { 
 
-    let carrito = localStorage.getItem("catIDinfo"); //obtengo por id mediante storage
-    let url = cart_list + "25801" + ".json"; // concatené para evitar los if
+    
+    let url = cart_list + "25801" + ".json"; 
 
 
     getJSONData(url).then(function (resultObj) {
@@ -73,8 +73,8 @@ tr:hover{
 
 
 function changeSubTotal(value,obj){
-  let articulo = JSON.parse(decodeURIComponent(obj));
-  var total = value * articulo.unitCost;
-  var subTotal = articulo.currency + " " + total;
-  document.getElementById("subtotal-"+ articulo.id).innerHTML = subTotal;
+  let articulo = JSON.parse(decodeURIComponent(obj)); //reconvierte los string a objeto
+  var total = value * articulo.unitCost; //multiplica el valor que  esté en el input por el costo del articulo
+  var subTotal = articulo.currency + " " + total; // USD + "ESPACIO VACIO + TOTAL"
+  document.getElementById("subtotal-"+ articulo.id).innerHTML = subTotal; //agrego mediante innerHTML ese subtotal que me dio, al input de id "subtotal-" y le concateno la ID del articulo
 }
