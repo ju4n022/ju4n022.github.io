@@ -154,7 +154,7 @@ function agregarTotales() { //funcion que solo agrega totales mediante innerHTML
 
 
 //funcion del boton vaciar carro
-function vaciarCarrito() {
+function vaciarCarrito() { 
 
   let carro = JSON.parse(localStorage.getItem("articulos"));
 
