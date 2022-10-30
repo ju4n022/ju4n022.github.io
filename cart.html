@@ -9,6 +9,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
 </head>
 
 <body>
@@ -30,43 +32,140 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <button class="bi bi-trash3-fill" style="color: red" onclick="vaciarCarrito()"></button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div class="container">
+    <div class="container-lg">
       <div id="carrito">
-        </div>
+        <style>
+          th,
+          table {
+
+            border: 5px solid blue;
+            padding: 0;
+            font-family: arial;
+            margin: 0;
+          }
+
+          thead {
+            border-bottom: solid 5px;
+          }
+        </style>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Imagen ilustrativa</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
     </div>
     <div class="container-lg">
       <br>
       <h2>Tipo de Envío</h2>
 
-      <div class="radio">
-        <form>
-          <input type="radio" name="envio"> Premium 2 a 5 dias (15%)
-      <br>
-      <input type="radio" name="envio"> Express 5 a 8 días (7%)
-      <br>
-      <input type="radio" name="envio"> Standard 12 a 15 días (5%)
-      <br>
-      <br>
-      <h2>Dirección de Envío</h2>
-      <br>
-
-      Calle <input type="text"> Numero <input type="number"> 
-       
-      <br>
-      <br>
-      Esquina <input type="text"> 
-      <br>
+      <div class="radio" required>
+        <form action="#" method="get" class="was-validated">
+          <input type="radio" name="envio" id="prem" value="0.15" required checked> Premium 2 a 5 dias (15%)
+          <br>
+          <input type="radio" name="envio" id="exp" value="0.07" required> Express 5 a 8 días (7%)
+          <br>
+          <input type="radio" name="envio" id="stan" value="0.05" required> Standard 12 a 15 días (5%)
+          <br>
+          <input type="submit">
+          <br>
+          <h2>Dirección de Envío</h2>
+          <br>
+          <br>
+          Calle <input type="text" class="form-control" id="calle" required>
+          Numero <input type="number" class="form-control" id="numPuerta" required>
+          <br>
+          <br>
+          Esquina <input type="text" class="form-control" id="esquina" required>
+          <br>
         </form>
-      
-       </div>
+
+      </div>
 
     </div>
+    <div class="container-lg" id="costos">
+      <h1> Costos </h1>
+
+
+
+    </div>
+    <div class="container-lg" id="formas">
+
+      <div id="formaH1">
+        <h1>Formas de pago</h1>
+      </div>
+
+      <!-- Button trigger modal -->
+
+      <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" >
+          Seleccionar
+        </button>
+
+      </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Formas de pago</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="input-group mb-3" style="margin: 8px;" required>
+              <form action="#" method="get" class="was-validated">
+
+                <input type="radio" name="forma" id="cred" value="credito" required checked> Tarjeta de Crédito
+                <br>
+                <input type="number" id="numTarj" placeholder="Ingrese número de Tarjeta" class="form-control" required>
+                <input type="number" id="cod" required> Código
+                <br>
+                <input type="date" id="venc" placeholder="mm/yy" class="form-control" required> Vencimiento
+                <br>
+                <br>
+                <input type="radio" name="forma" id="transfBanc" value="bank" required> Transferencia bancaria
+                <br>
+                <input type="number" id="numCuen" placeholder="Ingrese número de cuenta" class="form-control"
+                  style="width: 350px;" disabled>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button type="submit" class="btn btn-primary" style="margin: 16px;" onclick="btnFinalizar()"> Finalizar compra</button>
+    </div>
+
+
+
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -89,6 +188,23 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+    viewBox="0 0 16 16">
+    <path
+      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+    <path fill-rule="evenodd"
+      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+  </svg>
+
 </body>
 
 </html>
