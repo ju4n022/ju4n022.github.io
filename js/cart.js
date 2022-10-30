@@ -193,6 +193,9 @@ function btnFinalizar() { //boton finalizar compra se asegura de que los input c
   if(street.value == "" || number.value == "" || esq.value == ""){
     alert("Rellene campos")
   }
+  else if (tarjInput.value == "" && bankInput.value == "") { 
+alert("Olvidó colocar método de pago")
+  }
   else {
     alert("Compra realizada con éxito!!");
   }
