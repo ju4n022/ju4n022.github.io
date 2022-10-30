@@ -106,7 +106,7 @@ function agregarCarrito (producto)  {
 //si ya existe, actualizar la cantidad, si no existe agregar al arreglo
 
   
-  let carro = []; // hacer prolijo esto.
+  let carro = []; 
   
 
   if(localStorage.getItem("articulos")) {

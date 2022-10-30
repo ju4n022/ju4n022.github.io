@@ -1,5 +1,6 @@
+// div de la info del carrito
 const carritoInfo = document.getElementById("carrito");
-
+//div de los costos del carrito
 const costos = document.getElementById("costos");
 
 // Boton premium
@@ -29,25 +30,29 @@ const checkBank = document.getElementById("transfBanc");
 // Input de texto numero de cuenta
 const bankInput = document.getElementById("numCuen");
 
+//div de la forma de pago
 const formaH1 = document.getElementById("formaH1");
 
+//input de la calle del formulario
 const street = document.getElementById("calle");
 
+//input del numero del formulario
 const number = document.getElementById("numPuerta");
 
+//input de la esquina del formulario
 const esq = document.getElementById("esquina");
 
 
 
-function mostrarCarrito() {
+function mostrarCarrito() { //funcion que solo muestra lo que voy comprando (la invoco en el boton comprar en pr-infoHTML)
 
-  let productos = JSON.parse(localStorage.getItem("articulos"));
+  let productos = JSON.parse(localStorage.getItem("articulos")); //seteo let que será un parse del LS del arreglo articulos
 
 
-  productos.forEach(item => {
+  productos.forEach(item => { //recorro este arreglo ya parseado mediante JSON.parse
 
-    const subtotal = item.cantidad * Number(item.cost);
-    carritoInfo.innerHTML += `
+    const subtotal = item.cantidad * Number(item.cost); //declaro constante subtotal que será cada item.cantidad por su item.cost
+    carritoInfo.innerHTML += ` 
           
   <style>
   table, th, td {
@@ -80,6 +85,7 @@ function mostrarCarrito() {
     
   </table>
 `
+    //Agrego con innerHTML tabla con la informacion del producto que agrego al carrito
   });
   agregarTotales();
 
@@ -107,17 +113,17 @@ mostrarCarrito();
 
 var costoEnvio = premium.value;
 
-function agregarTotales() { //funcion que solo agregar totales mediante innerHTML
+function agregarTotales() { //funcion que solo agrega totales mediante innerHTML
 
 
-  let carro = JSON.parse(localStorage.getItem("articulos"));
+  let carro = JSON.parse(localStorage.getItem("articulos")); //traigo al carro a la funcion
   let total = 0;
 
-  carro.forEach(item => { total += parseInt(item.cost * item.cantidad) });
+  carro.forEach(item => { total += parseInt(item.cost * item.cantidad) }); //recorro cada articulo y su respectivo precio del carro y lo voy a agregando a "total"
 
-  let porcentEnvio = premium.value;
-  var costoEnvio = total * porcentEnvio;
-  var totalCompra = total + costoEnvio;
+  let porcentEnvio = premium.value; // el % de envio va variando con el listener CHANGE de la linea 131
+  var costoEnvio = total * porcentEnvio; //el costo de envío será el total multiplicado por dicho % de envio
+  var totalCompra = total + costoEnvio; // sumo el costo de envio + el total de los productos y pego mediante innerHTML estos datos en div costos
 
   costos.innerHTML = `<h1>Costos</h1>` + ` <ul class="list-group">
   <li class="list-group-item"><h2>Total Costo Productos (USD) </h2> <div><h4> $ ${total}</h4></div></li>
@@ -188,13 +194,13 @@ formaPago.forEach(itemForma => { //recorro esa lista de inputs y cada vez que ca
 });
 
 
-function btnFinalizar() { //boton finalizar compra se asegura de que los input calle, numero y esquina sean no vacíos
+function btnFinalizar() { //boton finalizar compra se asegura de que los input calle, numero y esquina sean no vacíos. Además de colocar un método de pago, si todo esto está completado, se realiza la compra
 
-  if(street.value == "" || number.value == "" || esq.value == ""){
+  if (street.value == "" || number.value == "" || esq.value == "") {
     alert("Rellene campos")
   }
   else if (tarjInput.value == "" && bankInput.value == "") { 
-alert("Olvidó colocar método de pago")
+    alert("Olvidó colocar método de pago")
   }
   else {
     alert("Compra realizada con éxito!!");
