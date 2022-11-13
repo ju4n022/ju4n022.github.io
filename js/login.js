@@ -8,7 +8,8 @@ function validar() {
     //validacion Novacio
 
     if (email.value == "" || password.value == "") {
-        alert("ingrese algun valor")
+        alert("ingrese algun valor");
+        
         
         
 
@@ -27,7 +28,7 @@ function GuardarEmail() {
     let userEmail = document.getElementById("floatingInput").value;
 
     localStorage.setItem("usuario", userEmail);
-    if (localStorage.getItem("usuario") != null) {
+    if (localStorage.getItem("usuario") != null) { //si ese elemento no es vacio, entonce leteo un objeto con todo vacio menos email
 
         let perfil = {
             nombre: "",
@@ -43,4 +44,6 @@ function GuardarEmail() {
 
 
 };
+
+
 //armo funcion que obtiene elemento por ID del email que se escribe, luego lo guarda en el localstorage con la ID "usuario" , y la ejecuto al final //

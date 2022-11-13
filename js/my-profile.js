@@ -47,7 +47,7 @@ function SaveProfile() {
 
 
 
-    if (Validar(firstName, segundoNombre, apellido, segundoApellido, email, number)) {
+    if (Validar(firstName, segundoNombre, apellido, segundoApellido, email, number)) { //si estos datos existen, entonce leo objeto con lo que obtengo de los input en la funcion de arriba
 
         let perfil = {
             nombre: firstName,
