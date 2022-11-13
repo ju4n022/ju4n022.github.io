@@ -8,13 +8,16 @@ function validar() {
     //validacion Novacio
 
     if (email.value == "" || password.value == "") {
-        alert("ingrese algun valor");
-        ;
+        alert("ingrese algun valor")
+        
+        
+
 
     }
     else {
         alert("Bienvenido genio del futbol mundial");
         GuardarEmail();
+
     };
 
 };
@@ -37,6 +40,7 @@ function GuardarEmail() {
         localStorage.setItem("perfil", JSON.stringify(perfil));
         window.location.href = "my-profile.html";
     };
+
 
 };
 //armo funcion que obtiene elemento por ID del email que se escribe, luego lo guarda en el localstorage con la ID "usuario" , y la ejecuto al final //
