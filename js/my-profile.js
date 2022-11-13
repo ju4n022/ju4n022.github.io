@@ -1,10 +1,10 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", function () { //cuando cargo la ventana se ejecuta una funcion que me cambia los value por los que obtiene de los inputID
 
     
     
 
     let profile = JSON.parse(localStorage.getItem("perfil"));
-    console.log("estoy aca" + profile);
+   
     document.getElementById("name").value = profile.nombre;
     document.getElementById("secondName").value = profile.segundoNombre;
     document.getElementById("surName").value = profile.apelldo;
@@ -12,15 +12,10 @@ window.addEventListener("load", function () {
     document.getElementById("number").value = profile.celu;
     document.getElementById("emailInp").value = profile.email;
 
-    console.log(profile.nombre);
+    
 
 
 });
-
-/* function isEmtpy(str) {
-    return (!str || str.length === 0);
-} */
-
 
 function Validar(firstName, segundoNombre, apellido, segundoApellido, email, number) {
 
@@ -65,5 +60,5 @@ function SaveProfile() {
         alert('Faltan datos');
 
     }
-    console.log(perfil.email)
+    
 };
